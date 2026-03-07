@@ -1,0 +1,57 @@
+<section class="flex justify-items-start  flex-col  h-full px-4">
+  <!-- Login Header -->
+  <header class="mb-6 ">
+    <h1 class="text-4xl font-bold text-gray-800">Login</h1>
+  </header>
+
+  <!-- Form Container -->
+  <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()" class="w-full max-w-lg  m-0 bg-white  rounded-lg  ">
+
+    <!-- Username Field -->
+    <div class="flex flex-col">
+      <label for="username" class="mb-1 text-md font-medium text-gray-900">Username</label>
+      <input type="text" id="username" name="username" placeholder="user1234" formControlName="username"
+        class="px-4 py-3 border border-gray-300 text-gray-400  focus:outline-none focus:ring-2 focus:ring-blue-500"
+        [ngClass]="{'border-red-700':loginForm.get('username')?.invalid && (loginForm.get('username')?.touched ||loginForm.get('username')?.dirty)}"
+        required />
+    </div>
+    <div class=" text-md font-medium text-red-700 h-5">
+
+      @if (loginForm.get('username')?.invalid && (loginForm.get('username')?.touched ||
+      loginForm.get('username')?.dirty))
+      {
+      <p>your username is required</p>
+
+      }
+    </div>
+    <!-- Password Field -->
+    <div class="flex flex-col mt-9">
+      <label for="password" class="mb-2 text-md font-medium text-gray-900">Password</label>
+      <input type="password" id="password" name="password" placeholder="........" formControlName="password"
+        class="px-4 py-3 border border-gray-300 font-bold text-gray-400  focus:outline-none focus:ring-2 focus:ring-blue-500"
+        [ngClass]="{'border-red-700':loginForm.get('password')?.invalid && (loginForm.get('password')?.touched ||loginForm.get('password')?.dirty)}"
+
+        required />
+    </div>
+    <div class=" text-md font-medium text-red-700 h-5">
+
+      @if (loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty
+      )) {
+      <p>your username is required</p>
+      }
+    </div>
+
+    <!-- Forget Password Link -->
+    <div class="text-right">
+      <a routerLink="/forget-password"
+        class="text-blue-600 font-medium hover:text-blue-700 cursor-pointer no-underline">
+        Forgot password?
+      </a>
+    </div>
+
+    <!-- Login Button -->
+    <app-auth-button label="Login"  [disabled]="!loginForm.valid"></app-auth-button>
+
+    <app-auth-redirect></app-auth-redirect>
+  </form>
+</section>

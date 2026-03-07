@@ -1,0 +1,44 @@
+<section class="flex justify-items-start  flex-col  h-full px-4">
+  <!-- Verify Otp Header -->
+  <header class="mb-6 ">
+     <div class="mt-7 md:mb-10 flex items-center justify-center w-10 h-10 border border-gray-300 text-gray-400 font-medium text-sm mb-24">
+  <lucide-angular [img]="MoveLeft"></lucide-angular>
+</div>
+    <h1 class="text-3xl font-bold text-gray-800">Verify OTP</h1>
+    <p class="pt-3 text-gray-600">
+      Please enter the 6-digits code we have sent to:<br>
+      {{email}}.<a class="text-blue-500" routerLink="/check-email" >Edit</a>
+    </p>
+  </header>
+
+  <!--OTP Form Container -->
+  <form [formGroup]="otpForm"  (ngSubmit)="onOtpSubmit()"class="mx-auto w-full max-w-lg  m-0 bg-white  rounded-lg  space-y-6">
+    <!-- OTP Inputs -->
+    <div class="flex gap-3 justify-center ">
+
+    <input maxlength="1" formControlName="digit1" class="otp-input">
+
+    <input maxlength="1" formControlName="digit2" class="otp-input">
+
+    <input maxlength="1" formControlName="digit3" class="otp-input">
+
+    <input maxlength="1" formControlName="digit4" class="otp-input">
+
+    <input maxlength="1" formControlName="digit5" class="otp-input">
+
+    <input maxlength="1" formControlName="digit6" class="otp-input">
+
+  </div>
+
+
+
+
+
+
+
+    <!-- verify code Button -->
+    <app-auth-button label="Verify Code" [disabled]="!otpForm.valid"></app-auth-button>
+
+    <app-auth-redirect></app-auth-redirect>
+  </form>
+</section>

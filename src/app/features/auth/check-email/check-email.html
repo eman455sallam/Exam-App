@@ -1,0 +1,40 @@
+<section class="w-full max-w-md mx-auto  space-y-6" aria-labelledby="reset-title">
+
+  <header class="space-y-4">
+
+    <!-- arrow Icon -->
+    <div routerLink="/forget-password"
+      class="mt-7 md:mb-10 flex items-center justify-center w-10 h-10 border border-gray-300 text-gray-500 font-medium text-sm mb-24 cursor-pointer">
+      <lucide-angular [img]="MoveLeft"  ></lucide-angular>
+    </div>
+
+    <h1 id="reset-title" class="text-3xl font-bold text-gray-800">
+      Password Reset Sent
+    </h1>
+
+  </header>
+
+  <article class=" text-gray-900">
+
+    <p class="text-lg text-gray-700 mt-5">
+      We have sent a password reset link to:<br><span class="font-semibold text-blue-800 "> {{ email }}
+      </span>
+    </p>
+
+
+    <p class="text-lg text-gray-700 mt-5">
+      Please check your inbox and follow the instructions to reset your password.
+    </p>
+
+    <p class="text-base text-gray-500 mt-5">
+      If you don't see the email within a few minutes, check your spam or junk folder.
+    </p>
+
+  </article>
+
+  <footer>
+    <app-auth-redirect text="Don't have an account?" linkText="Create yours" link="/register">
+    </app-auth-redirect>
+  </footer>
+
+</section>
