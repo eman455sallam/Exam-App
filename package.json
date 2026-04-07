@@ -32,6 +32,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-regular-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "geist": "^1.7.0",
     "google-libphonenumber": "^3.2.44",
     "intl-tel-input": "^19.5.7",
     "lucide-angular": "^0.577.0",
@@ -54,6 +55,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "ng-packagr": "^20.3.0",
     "typescript": "~5.9.2"
   }
 }

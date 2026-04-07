@@ -1,0 +1,103 @@
+<section class="flex justify-items-start  flex-col  h-full px-4">
+  <!-- Login Header -->
+  <header class="w-full max-w-[452px] pb-[16px] md:pb-[24px] flex items-center gap-[10px]">
+
+    <h1 class="font-inter font-bold
+             text-[24px] md:text-[30px]
+             leading-[24px] md:leading-[30px]
+             text-[#1F2937]">
+      Login
+    </h1>
+
+  </header>
+
+  <!-- Form Container -->
+  <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()" class="w-full max-w-lg  m-0 bg-white  rounded-lg  ">
+
+    <!-- Username Field -->
+    <div class="flex flex-col w-full max-w-[452px] gap-[10px] ">
+
+      <!-- Label -->
+      <label for="username" class="font-geist font-medium text-[16px] leading-[27px] text-black">
+        Username
+      </label>
+
+      <!-- Input -->
+      <input type="text" id="username" name="username" placeholder="user123" formControlName="username" class="w-full h-[46px] px-[10px] border border-[#E5E7EB]
+      placeholder-geist placeholder-normal placeholder-[14px] placeholder-[#9CA3AF] placeholder-align-middle
+                focus:outline-none focus:ring-2 focus:ring-[#155DFC]"
+        [ngClass]="{'border-red-600': loginForm.get('username')?.invalid && (loginForm.get('username')?.touched || loginForm.get('username')?.dirty)}"
+        required />
+      <!-- Username Error Message -->
+      <div class="w-full max-w-[452px]  text-[#DC2626] font-geist font-normal text-[14px]
+            leading-[22px] align-bottom">
+        @if (loginForm.get('username')?.invalid && (loginForm.get('username')?.touched ||
+        loginForm.get('username')?.dirty)) {
+        <p>Your username is required</p>
+        }
+      </div>
+    </div>
+
+    <!-- Password Field Layout -->
+    <div class="flex flex-col w-full max-w-[452px] gap-[10px] h-auto">
+
+      <!-- Label -->
+      <label for="password"
+        class="w-full max-w-[452px]  font-geist font-medium text-[16px] leading-[27px] text-[#1F2937]">
+        Password
+      </label>
+
+      <!-- Input -->
+      <input type="password" id="password" name="password" placeholder="********" formControlName="password" class="w-full max-w-[414px] h-[46px] px-[10px] border border-[#E5E7EB]
+                text-[#9CA3AF] font-geist font-normal text-[14px] placeholder-geist placeholder-normal
+                placeholder-[14px] placeholder-[#9CA3AF] placeholder-align-middle
+                focus:outline-none focus:ring-2 focus:ring-[#155DFC]"
+        [ngClass]="{'border-red-600': loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)}"
+        required />
+
+      <div class="flex flex-col w-full max-w-[452px] gap-[4px]">
+
+        <!-- Error Message -->
+        @if(loginForm.get('password')?.invalid && (loginForm.get('password')?.touched ||
+        loginForm.get('password')?.dirty)){
+        <div class="text-[#DC2626] font-geist font-normal text-[14px] leading-[22px] align-bottom">
+          <p>Your password is required</p>
+        </div>
+        }
+
+
+        <!-- Forgot Password Link -->
+        <div class="w-full flex justify-end">
+          <a routerLink="/forget-password"
+            class="font-geist font-medium text-[14px] text-[#155DFC] leading-[18px] hover:underline cursor-pointer">
+            Forgot your password?
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Server Error Message -->
+    @if(errorMessage){
+    <div class="relative mb-[36px]">
+      <lucide-angular [img]="CircleX"
+        class="absolute left-1/2 -top-1  transform -translate-x-1/2  w-[18px] h-[18px] text-[#DC2626] flex-shrink-0">
+      </lucide-angular>
+      <div class=" w-full max-w-[452px] h-[38px] px-[10px] py-[10px] mt-2
+            border border-[#DC2626] bg-[#FEF2F2]
+            flex items-center justify-center">
+
+        <span class="font-geist font-normal text-[14px] leading-[18px] text-[#DC2626]">
+          {{ errorMessage }}
+        </span>
+      </div>
+    </div>
+
+    }
+    <!-- Login Button -->
+    <app-auth-button label="Login" [disabled]="!loginForm.valid"></app-auth-button>
+
+    <app-auth-redirect></app-auth-redirect>
+  </form>
+</section>

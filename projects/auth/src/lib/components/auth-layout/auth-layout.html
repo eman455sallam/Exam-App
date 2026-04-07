@@ -1,0 +1,113 @@
+<main class="min-h-screen flex flex-col md:flex-row">
+
+  <!-- Left Section -->
+  <section
+    class="w-full md:w-1/2 flex items-center justify-center bg-[#EFF6FF] bg-opacity-75 backdrop-blur-[200px] pb-7 md:pb-0">
+    <div class="w-full max-w-md">
+
+      <header class="mt-7 md:mb-10 flex items-center gap-2.5 mb-24">
+
+        <div class="w-10 h-10 p-1.5 flex items-center justify-center">
+          <lucide-angular [img]="FolderCode" class="w-full h-full text-[#155DFC]">
+          </lucide-angular>
+        </div>
+
+        <span class=" font-semibold text-[20px] leading-5 text-[#155DFC]">
+          Exam App
+        </span>
+
+      </header>
+      <div class=" w-full max-w-md ">
+
+        <!-- Title -->
+        <h1 class="font-inter font-bold text-[24px] md:text-[30px] leading-6 md:leading-7.5 text-gray-800 mb-12">
+          Empower your learning journey
+          with our smart exam platform.
+        </h1>
+        <!-- Features -->
+        <div class="space-y-8">
+
+          <!-- Feature 1 -->
+          <div class="flex items-start gap-2.5">
+
+            <!-- Icon -->
+            <div class=" w-9 h-9 p-1.5 flex items-center justify-center border-[1.5px]  border-[#155DFC] box-border">
+              <lucide-angular [img]="Brain" class="w-6 h-6  text-[#155DFC]"></lucide-angular>
+            </div>
+
+            <!-- Text -->
+            <div>
+              <!-- Title -->
+              <h3
+                class="font-geist font-semibold text-[16px] md:text-[20px] leading-4 md:leading-[20px] text-[#155DFC]">
+                Tailored Diplomas
+              </h3>
+
+              <!-- Description -->
+              <p class="text-gray-700 text-[14px] md:text-[16px] mt-1 leading-4.5 md:leading-[20px]">
+                Choose from specialized tracks like Frontend, Backend, and Mobile Development.
+              </p>
+            </div>
+
+          </div>
+          <!-- Feature 2 -->
+          <div class="flex items-start gap-[10px]">
+
+            <!-- Icon -->
+            <div class="w-[36px] h-[36px] p-[6px] flex items-center justify-center border-[1.5px] border-[#155DFC] box-border">
+              <lucide-angular [img]="BookOpenCheck" class="w-6 h-6 text-[#155DFC]"></lucide-angular>
+            </div>
+
+            <!-- Text -->
+            <div>
+              <!-- Title -->
+              <h3
+                class="font-geist font-semibold text-[16px] md:text-[20px] leading-[16px] md:leading-[20px] text-[#155DFC]">
+                Focused Exams
+              </h3>
+
+              <!-- Description -->
+              <p class="text-gray-700 text-[14px] md:text-[16px] mt-1 leading-[18px] md:leading-[20px]">
+                Take carefully structured exams that evaluate your knowledge effectively and fairly.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="flex items-start gap-[10px]">
+
+            <!-- Icon -->
+            <div class="w-[36px] h-[36px] p-[6px] flex items-center justify-center border-[1.5px] border-[#155DFC] box-border">
+              <lucide-angular [img]="RectangleEllipsis" class="w-6 h-6 text-[#155DFC]"></lucide-angular>
+            </div>
+
+            <!-- Text -->
+            <div>
+              <!-- Title -->
+              <h3
+                class="font-geist font-semibold text-[16px] md:text-[20px] leading-[16px] md:leading-[20px] text-[#155DFC]">
+                Smart Multi-Step Forms
+              </h3>
+
+              <!-- Description -->
+              <p class="text-gray-700 text-[14px] md:text-[16px] mt-1 leading-[18px] md:leading-[20px]">
+                Enjoy a seamless multi-step authentication process designed for better user experience.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Right Section -->
+  <section class="w-full md:w-1/2 flex items-center justify-center mt-8 md:mt-0 ">
+    <div class="w-full max-w-md">
+      <router-outlet></router-outlet>
+    </div>
+  </section>
+
+</main>

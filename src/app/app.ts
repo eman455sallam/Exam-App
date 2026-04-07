@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 
-import { AuthLayout } from "./layout/auth-layout/auth-layout";
+import { AuthLayout } from "../../projects/auth/src/lib/components/auth-layout/auth-layout";
 import { RouterOutlet } from "@angular/router";
 
 @Component({

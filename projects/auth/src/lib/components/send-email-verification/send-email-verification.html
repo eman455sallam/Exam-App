@@ -1,0 +1,46 @@
+<section class="flex justify-items-start  flex-col  h-full px-4">
+  <!-- Register Email Header -->
+  <header class="w-full max-w-[452px] pb-[16px] md:pb-[24px] flex items-center gap-[10px]">
+
+    <h1 class="font-inter font-bold
+             text-[24px] md:text-[30px]
+             leading-[24px] md:leading-[30px]
+             text-[#1F2937]">
+      Create Account
+    </h1>
+
+  </header>
+  <!-- Form Container -->
+  <form [formGroup]="registerEmailForm" (ngSubmit)="onEmailSubmit()"
+    class="w-full max-w-lg  m-0 bg-white  rounded-lg  ">
+
+    <!-- Email Field -->
+    <div class="flex flex-col w-full max-w-[452px] gap-[10px] ">
+
+      <!-- Label -->
+      <label for="email" class="font-geist font-medium text-[16px] leading-[27px] text-black">
+        Email
+      </label>
+
+     <!-- Input -->
+      <input type="text" id="email" name="email" placeholder="user@example.com" formControlName="email"class="w-full h-[46px] px-[10px] border border-[#E5E7EB]
+      placeholder-geist placeholder-normal placeholder-[14px] placeholder-[#9CA3AF] placeholder-align-middle
+                focus:outline-none focus:ring-2 focus:ring-[#155DFC]"
+        [ngClass]="{'border-red-600': registerEmailForm.get('email')?.invalid && (registerEmailForm.get('email')?.touched || registerEmailForm.get('email')?.dirty)}"
+        required />
+    </div>
+
+    <!-- Error message -->
+     <div class="w-full max-w-[452px]  text-[#DC2626] font-geist font-normal text-[14px]
+            leading-[22px] align-bottom">
+        @if (getEmailError()){
+        <p>{{getEmailError()}}</p>
+        }
+      </div>
+
+    <!-- Next button -->
+    <lib-register-button [disabled]="registerEmailForm.invalid"></lib-register-button>
+  </form>
+  <app-auth-redirect [label]="'Login'" [link]="'/login'"
+    [redirectLabel]="'Already have an account?'"></app-auth-redirect>
+</section>

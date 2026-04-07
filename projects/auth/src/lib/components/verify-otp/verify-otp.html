@@ -1,0 +1,82 @@
+<section class="flex justify-items-start  flex-col  h-full  gap-10">
+  <!-- Verify Otp Header -->
+  <header class="w-full max-w-113   gap-2.5">
+
+    <h1 class="font-inter font-bold
+             text-[24px] md:text-[30px]
+             leading-6 md:leading-7.5 tracking-[0px]
+             text-[#1F2937] ">
+      Create Account
+    </h1>
+
+  </header>
+  <!-- Verify OTP Section -->
+  <article class="w-full max-w-113 flex justify-center flex-col gap-2.5">
+
+    <!-- Verify OTP Title -->
+    <h3 class="font-inter  font-bold text-[24px] leading-6 tracking-[0px] text-blue-600">
+      Verify OTP
+    </h3>
+
+    <!-- Instruction Text -->
+    <p class="font-geist-mono font-normal text-[16px] leading-4 tracking-[0px] text-gray-500">
+      Please enter the 6-digits code we have sent to:</p>
+    <p class="inline-flex items-center font-geist-mono font-normal size-4 leading-4 tracking-[0px] text-gray-800">{{
+      email }}
+      <span
+        class="font-geist-mono font-medium text-[16px] leading-4 tracking-[0px]  underline decoration-solid decoration-0 decoration-skip-ink-auto ml-2 text-blue-600"
+        routerLink="">Edit</span>
+    </p>
+
+
+
+
+  </article>
+
+
+
+
+  <!--OTP Form Container -->
+  <form [formGroup]="otpForm" (ngSubmit)="onOtpSubmit()"
+    class="mx-auto w-full max-w-lg  m-0 bg-white  rounded-lg  space-y-6">
+    <!-- OTP Inputs -->
+    <div class="flex flex-col items-center gap-2.5 w-full pt-2.5 pb-2.5 ">
+      <!-- OTP Inputs -->
+      <div class="flex gap-6 justify-center w-full">
+        <input maxlength="1" formControlName="digit1" class="otp-input">
+        <input maxlength="1" formControlName="digit2" class="otp-input">
+        <input maxlength="1" formControlName="digit3" class="otp-input">
+        <input maxlength="1" formControlName="digit4" class="otp-input">
+        <input maxlength="1" formControlName="digit5" class="otp-input">
+        <input maxlength="1" formControlName="digit6" class="otp-input">
+      </div>
+
+      <!-- Timer Text and error message -->
+      
+      @if(errorMessage){
+      <p class="mt-6 font-mono font-medium text-[14px] leading-3.5 text-[#DC2626] text-center">
+        {{ errorMessage }}
+      </p>
+      } @else {
+      <p class="mt-6 font-mono font-medium text-[14px] leading-3.5 text-gray-500 text-center">
+        You can request another code in: 60s
+      </p>
+      }
+    </div>
+
+
+
+    <!-- verify code Button -->
+    <div class="w-full h-11.5  gap-2.5  flex items-center">
+      <button [disabled]="!otpForm.valid" type="submit"
+        class="w-full h-11.5 bg-blue-50 border border-[#155DFC] gap-2.5 flex items-center justify-center">
+        <span class="font-mono font-medium text-[14px] leading-4.5 text-[#1F2937] align-middle tracking-normal">Verify
+          Code</span>
+
+
+      </button>
+    </div>
+
+
+  </form>
+</section>
