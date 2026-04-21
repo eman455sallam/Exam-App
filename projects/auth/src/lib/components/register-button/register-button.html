@@ -1,7 +1,7 @@
-<div class="w-full h-31  gap-9 pt-6 flex items-center">
-  <button [disabled]="disabled" type="submit"
-  class="w-full h-11.5 bg-blue-50 border border-[#155DFC] gap-2.5 flex items-center justify-center">
-    <span class="font-mono font-medium text-[14px] leading-4.5 text-[#1F2937] align-middle tracking-normal">{{label}}</span>
+<div class="w-full   gap-9 pt-6 flex items-center">
+  <button [disabled]="disabled" type="submit" [ngClass]="[bgColor,textColor]"
+  class="w-full h-11.5  border border-[#155DFC] gap-2.5 flex items-center justify-center">
+    <span class="font-mono font-medium text-[14px] leading-4.5  align-middle tracking-normal">{{label}}</span>
 
     <lucide-angular [img]="ChevronRight" class="w-4 h-4">
           </lucide-angular>

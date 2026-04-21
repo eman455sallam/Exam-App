@@ -6,10 +6,11 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth-service';
 import { SendEmailVerificationPayload } from '../../interfaces/send-email-verification-response';
 import { Router } from '@angular/router';
+import { InputError } from '../input-error/input-error';
 
 @Component({
   selector: 'lib-send-email-verification',
-  imports: [ReactiveFormsModule, AuthRedirect, RegisterButton ,CommonModule],
+  imports: [ReactiveFormsModule, AuthRedirect, RegisterButton,InputError, CommonModule],
   templateUrl: './send-email-verification.html',
   styleUrl: './send-email-verification.css',
 })
@@ -32,25 +33,7 @@ export class SendEmailVerification {
     });
 
 }
-// Error Method
-getEmailError():string{
-  const emailControl=this.registerEmailForm.get('email');
-  // Front end errors
-  if(emailControl?.invalid && (emailControl?.touched || emailControl?.dirty)){
-    if(emailControl.errors?.['required'])
-      return 'Email is required';
 
-    if(emailControl.errors?.['email'])
-      return 'Invalid Email Format';
-  }
-  // Back end errors
-  if(this.errorMessage)
-    return this.errorMessage;
-
-
-  return '';
-
-}
 
 // Submit Email Form
 onEmailSubmit(){

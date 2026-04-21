@@ -1,38 +1,41 @@
-<section class="w-full max-w-md mx-auto  space-y-6" aria-labelledby="reset-title">
+<section class="w-full max-w-md mx-auto ">
 
-  <header class="space-y-4">
+  <div class="w-[452px] flex items-start gap-2.5">
 
     <!-- arrow Icon -->
     <div routerLink="/forget-password"
-      class="mt-7 md:mb-10 flex items-center justify-center w-10 h-10 border border-gray-300 text-gray-500 font-medium text-sm mb-24 cursor-pointer">
-      <lucide-angular [img]="MoveLeft"  ></lucide-angular>
+      class=" flex items-center justify-center w-10 h-10 border-[1.5px] border-gray-200 text-gray-800 gap-2.5   cursor-pointer">
+      <lucide-angular [img]="MoveLeft"></lucide-angular>
     </div>
 
-    <h1 id="reset-title" class="text-3xl font-bold text-gray-800">
-      Password Reset Sent
-    </h1>
 
-  </header>
+  </div>
 
-  <article class=" text-gray-900">
+  <article class="w-[452px] h-full flex flex-col gap-4">
+    <header>
+      <h1 class="font-sans font-bold text-[30px] leading-none text-gray-800 mt-10">
+        Password Reset Sent
+      </h1>
+    </header>
 
-    <p class="text-lg text-gray-700 mt-5">
-      We have sent a password reset link to:<br><span class="font-semibold text-blue-800 "> {{ email }}
-      </span>
+    <p class="font-mono font-normal text-[16px] leading-none text-gray-800">
+      We have sent a password reset link to: <span class="font-mono font-normal text-[16px] leading-none text-blue-500">
+  user@example.com
+</span>
     </p>
 
 
-    <p class="text-lg text-gray-700 mt-5">
+    <p class="font-mono font-normal text-[16px] leading-none text-gray-800">
       Please check your inbox and follow the instructions to reset your password.
     </p>
 
-    <p class="text-base text-gray-500 mt-5">
-      If you don't see the email within a few minutes, check your spam or junk folder.
+    <p class="font-mono font-normal text-[14px] leading-none text-gray-500 tracking-[0px]">
+      If you don’t see the email within a few minutes, check your spam or junk folder.
     </p>
 
   </article>
 
-  <footer>
+  <footer class="w-full flex pt-6 gap-9 mt-10">
     <app-auth-redirect text="Don't have an account?" linkText="Create yours" link="/register">
     </app-auth-redirect>
   </footer>

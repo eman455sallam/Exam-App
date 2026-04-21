@@ -14,6 +14,11 @@ import { SendEmailVerificationAdaptor } from '../adaptor/send-email-verification
 import { VerifyOtpRequest } from '../interfaces/verify-otp-request';
 import { VerifyOtpPayload, VerifyOtpResponse } from '../interfaces/verify-otp-response';
 import {  VerifyOtpAdaptor } from '../adaptor/verify-otp.adaptor';
+import { RegisterRequest } from '../interfaces/register-request';
+import { RegisterResponse, User } from '../interfaces/register-response';
+import { RegisterAdaptor } from '../adaptor/register.adaptor';
+import { ForgotPasswordPayload, ForgotPasswordResponse } from '../interfaces/forgot-password-response';
+import { ForgotPasswordAdaptor } from '../adaptor/forgot-password.adaptor';
 
 @Injectable({
   providedIn: 'root',
@@ -27,6 +32,10 @@ export class AuthService implements  AuthAbstract {
   private readonly  _redirectPath=inject(AuthRedirect);
   private readonly _sendEmailVerificationAdaptor=inject(SendEmailVerificationAdaptor);
   private readonly _verifyOtpAdaptor=inject(VerifyOtpAdaptor);
+  private readonly _registerAdaptor=inject(RegisterAdaptor);
+  private readonly _forgotPasswordAdaptor=inject(ForgotPasswordAdaptor);
+
+
 
   // 1-login
   login(data:LoginRequest):Observable<LoginPayload>{
@@ -39,7 +48,7 @@ export class AuthService implements  AuthAbstract {
   redirectAfterLogin() {
     this._router.navigate([this._redirectPath]);
   }
-  // 3-Register Email
+  // 3-SendEmailVerification
   SendEmailVerification(data:SendEmailVerificationRequest):Observable<SendEmailVerificationPayload>{
     const url=`${this._apiUrl}/send-email-verification`;
     return this._httpclient.post<SendEmailVerificationResponse>(url,data).pipe(
@@ -58,8 +67,54 @@ export class AuthService implements  AuthAbstract {
         )
 
   }
-  // 6-Handle error
+
+  // 5 - Register data
+     registerData:Partial<RegisterRequest>={}   //“Partial makes all properties optional temporarily”
+     updateRegisterData(data:Partial<RegisterRequest>){
+           this.registerData={
+            ...this.registerData,
+            ...data
+           }
+
+     }
+     getRegisterRequest():RegisterRequest{
+      return{
+        firstName: this.registerData.firstName!,
+        lastName: this.registerData.lastName!,
+        username: this.registerData.username!,
+        email: this.registerData.email!,
+        phone: this.registerData.phone!,
+        password: this.registerData.password!,
+        confirmPassword: this.registerData.confirmPassword!
+      }
+     }
+    register(data: RegisterRequest): Observable<User> {
+      const url=`${this._apiUrl}/register`;
+      return this._httpclient.post<RegisterResponse>(url,data).pipe(
+        map(res=>this._registerAdaptor.adapt(res)),
+        catchError(err=>throwError(()=>this.handleError(err)))
+      )
+
+    }
+    // 6-Forgot password
+    forgotPassword(data: SendEmailVerificationRequest): Observable<ForgotPasswordPayload> {
+      const url=`${this._apiUrl}/forgot-password`;
+      return this._httpclient.post<ForgotPasswordResponse>(url,data).pipe(
+        map(res=>this._forgotPasswordAdaptor.adapt(res)),
+        catchError(err=>throwError(()=>this.handleError(err)))
+      )
+
+
+    }
+
+     // 7-Handle error
   handleError(error: HttpErrorResponse): string {
+    const apiError=error?.error;
+    if(apiError?.errors ){
+      return apiError.errors[0].messages || apiError.errors[0].message;
+
+    }
+
   if (error.error?.message) {
     return error.error.message;
   }

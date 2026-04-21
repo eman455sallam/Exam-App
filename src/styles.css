@@ -1,4 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'tailwindcss';
 
+@import "@fontsource-variable/geist-mono/wght.css";
+@theme {
+  --font-mono: "Geist Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+
 

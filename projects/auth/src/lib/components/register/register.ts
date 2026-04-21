@@ -1,35 +1,60 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { AuthButton } from "../auth-button/auth-button";
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-
+import { ActivatedRoute, Router } from '@angular/router';
+import { RegisterButton } from '../register-button/register-button';
+import {NgxIntlTelInputModule} from 'ngx-intl-tel-input';
+import { InputError } from '../input-error/input-error';
+import { AuthService } from '../../services/auth-service';
 @Component({
   selector: 'app-register',
-  imports: [AuthButton ,CommonModule,ReactiveFormsModule ],
+  imports: [RegisterButton ,CommonModule,ReactiveFormsModule,NgxIntlTelInputModule,InputError],
   templateUrl: './register.html',
   styleUrl: './register.css',
 })
 export class Register {
 
    registerForm!: FormGroup;
-    constructor(private fb: FormBuilder ,private router:Router) {}
+   errorMessage:string='';
+   selectedCountryCode = '';
+   email:string='';
+    private _authService=inject(AuthService);
+    private _route = inject(ActivatedRoute);
+    private _router = inject(Router);
+    private _fb=inject(FormBuilder);
 
   ngOnInit() {
-       this.registerForm = this.fb.group({
+       this.registerForm = this._fb.group({
 
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
         username: ['', Validators.required],
-        email: ['', [Validators.required, Validators.email]],
         phone: ['', Validators.required],
-        password: ['', Validators.required],
-        confirmPassword: ['', Validators.required]
+
 });
+       //Getting Email
+       this._route.queryParams.subscribe(params=>{
+        this.email=params['email']
+       })
+      this.registerForm.valueChanges.subscribe(()=>{
+        this.errorMessage='';
+      })
+
 
 }
+
 onRegisterSubmit() {
-  this.router.navigate(['/login'])
+  if(this.registerForm.invalid) return;
+
+  this._authService.updateRegisterData({
+    firstName: this.registerForm.value.firstName,
+        lastName: this.registerForm.value.lastName,
+        username: this.registerForm.value.username,
+        phone:this.registerForm.value.phone.e164Number,
+        email:this.email
+  })
+   console.log(this._authService.registerData)
+  this._router.navigate(['/create-password'])
 }
 
 }

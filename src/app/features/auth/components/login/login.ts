@@ -1,17 +1,17 @@
+import { LoginPayload } from './../../../../../../projects/auth/src/lib/interfaces/login-response';
+import { LoginRequest } from './../../../../../../projects/auth/src/lib/interfaces/login-request';
 import { Component, inject } from '@angular/core';
-import { AuthButton } from '../auth-button/auth-button';
-import { AuthRedirect } from '../auth-redirect/auth-redirect';
 import { FormBuilder, Validators, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../services/auth-service';
-import { LoginRequest } from '../../interfaces/login-request';
-import { LoginPayload } from '../../interfaces/login-response';
 import { LucideAngularModule, CircleX } from 'lucide-angular';
-
+import { RouterLink } from '@angular/router';
+import { AuthButton } from '../../../../../../projects/auth/src/lib/components/auth-button/auth-button';
+import { AuthRedirect } from '../../../../../../projects/auth/src/lib/components/auth-redirect/auth-redirect';
+import { AuthService } from '../../../../../../projects/auth/src/lib/services/auth-service';
 
 @Component({
-  selector: 'app-login',
-  imports: [AuthButton, AuthRedirect, ReactiveFormsModule, CommonModule,LucideAngularModule],
+  selector: 'login',
+  imports: [AuthButton, AuthRedirect, ReactiveFormsModule, CommonModule,LucideAngularModule,RouterLink],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -47,4 +47,3 @@ export class Login {
 
 
 }
-

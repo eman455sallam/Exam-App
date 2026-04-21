@@ -3,8 +3,8 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "rootDir": "./src",
-    "outDir": "../../out-tsc/lib",
+    "rootDir": "./src/lib",
+    "outDir": "../../dist/auth",
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
@@ -12,7 +12,7 @@
     "types": []
   },
   "include": [
-    "src/**/*.ts"
+    "src/lib/**/*.ts"
   ],
   "exclude": [
     "**/*.spec.ts"

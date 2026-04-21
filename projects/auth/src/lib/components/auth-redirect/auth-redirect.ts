@@ -8,8 +8,8 @@ import { RouterLink } from '@angular/router';
   styleUrl: './auth-redirect.css',
 })
 export class AuthRedirect {
- @Input() label: string = 'create yours?';
-  @Input() link: string = '/register';
+ @Input() label: string = 'create yours';
+  @Input() link: string = '/send-email-verification';
   @Input() redirectLabel:string='Don’t have an account?';
 
 }
