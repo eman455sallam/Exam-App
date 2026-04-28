@@ -1,21 +1,23 @@
-import { InputError } from './../../../../../../projects/auth/src/lib/components/input-error/input-error';
-import { AuthButton } from './../../../../../../projects/auth/src/lib/components/auth-button/auth-button';
-import { RegisterRequest } from './../../../../../../projects/auth/src/lib/interfaces/register-request';
+import { InputError } from 'auth';
+import { AuthButton } from 'auth';
+import { RegisterRequest } from 'auth';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PasswordModule } from 'primeng/password';
-import { AuthService } from '../../../../../../projects/auth/src/lib/services/auth-service';
-import { passwordMatchValidator } from './../../../../../../projects/auth/src/lib/validators/password-match.validators';
+import { AuthService } from 'auth';
+import { passwordMatchValidator } from 'auth';
+import { LucideAngularModule, CircleX } from 'lucide-angular';
+
 
 @Component({
   selector: 'create-password',
-  imports: [AuthButton, ReactiveFormsModule, InputError,PasswordModule ],
+  imports: [AuthButton, ReactiveFormsModule, InputError,PasswordModule,LucideAngularModule ],
   templateUrl: './create-password.html',
   styleUrl: './create-password.css',
 })
 export class CreatePassword {
-
+  readonly CircleX=CircleX;
   createPasswordForm!: FormGroup;
   errorMessage:string='';
 

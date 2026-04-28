@@ -13,6 +13,8 @@ import { VerifyOtpPayload } from "../interfaces/verify-otp-response";
 import { CreatePasswordResponse } from '../interfaces/create-password-response';
 import { CheckEmailResponse } from '../interfaces/check-email-response';
 import { SendEmailVerificationRequest} from '../interfaces/send-email-verification-request';
+import { ResetPasswordRequest } from '../interfaces/reset-password-request';
+import { ResetPasswordResponse, ResetPasswordResponsePayload } from '../interfaces/reset-password-response';
 
 export abstract class AuthAbstract{
 
@@ -27,7 +29,6 @@ export abstract class AuthAbstract{
 
   abstract forgotPassword(data: SendEmailVerificationRequest): Observable<ForgotPasswordPayload>;
 
-  // abstract createPassword(data: CreatePasswordRequest):Observable<CreatePasswordResponse> ;
+  abstract resetPassword(data: ResetPasswordRequest):Observable<ResetPasswordResponsePayload> ;
 
-  // abstract checkEmail(data: CheckEmailRequest):Observable<CheckEmailResponse> ;
 }

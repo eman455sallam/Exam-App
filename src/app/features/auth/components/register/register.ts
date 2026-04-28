@@ -3,9 +3,10 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {NgxIntlTelInputModule} from 'ngx-intl-tel-input';
-import { AuthService } from '../../../../../../projects/auth/src/lib/services/auth-service';
-import { RegisterButton } from '../../../../../../projects/auth/src/lib/components/register-button/register-button';
-import { InputError } from '../../../../../../projects/auth/src/lib/components/input-error/input-error';
+import { SearchCountryField, CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-input';
+import { AuthService } from 'auth';
+import { RegisterButton } from 'auth';
+import { InputError } from 'auth';
 @Component({
   selector: 'register',
   imports: [RegisterButton ,CommonModule,ReactiveFormsModule,NgxIntlTelInputModule,InputError],
@@ -18,6 +19,14 @@ export class Register {
    errorMessage:string='';
    selectedCountryCode = '';
    email:string='';
+   SearchCountryField = SearchCountryField;
+	 CountryISO = CountryISO;
+   PhoneNumberFormat = PhoneNumberFormat;
+   preferredCountries: CountryISO[] = [
+  CountryISO.Egypt,
+  CountryISO.SaudiArabia,
+  CountryISO.UnitedArabEmirates
+];
     private _authService=inject(AuthService);
     private _route = inject(ActivatedRoute);
     private _router = inject(Router);
@@ -32,11 +41,22 @@ export class Register {
         phone: ['', Validators.required],
 
 });
+
        //Getting Email
-       this._route.queryParams.subscribe(params=>{
-        this.email=params['email']
-       })
-      this.registerForm.valueChanges.subscribe(()=>{
+      const email = sessionStorage.getItem('auth_email');
+     if (!email) {
+        this._router.navigate(['/auth/send-email-verification']);
+        return;
+      }
+      this.email = email;
+      // Restore saved data
+      const savedFormdata=sessionStorage.getItem('register_form');
+      if(savedFormdata){
+        this.registerForm.patchValue(JSON.parse(savedFormdata));
+      }
+
+      this.registerForm.valueChanges.subscribe((value)=>{
+        sessionStorage.setItem('register_form',JSON.stringify(value));
         this.errorMessage='';
       })
 

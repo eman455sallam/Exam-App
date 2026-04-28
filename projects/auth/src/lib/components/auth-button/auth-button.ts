@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-auth-button',
+  selector: 'lib-auth-button',
   imports: [],
   templateUrl: './auth-button.html',
   styleUrl: './auth-button.css',

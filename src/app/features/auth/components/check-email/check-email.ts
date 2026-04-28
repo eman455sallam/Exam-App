@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { LucideAngularModule, MoveLeft } from 'lucide-angular';
-import { RouterLink } from '@angular/router';
-import { AuthRedirect } from '../../../../../../projects/auth/src/lib/components/auth-redirect/auth-redirect';
+import { Component, inject } from '@angular/core';
+import { LucideAngularModule, MoveLeft} from 'lucide-angular';
+import { RouterLink , ActivatedRoute} from '@angular/router';
+import { AuthRedirect} from 'auth';
 
 @Component({
   selector: 'app-check-email',
@@ -11,7 +11,14 @@ import { AuthRedirect } from '../../../../../../projects/auth/src/lib/components
 })
 export class CheckEmail {
     readonly MoveLeft=MoveLeft;
-email: string="user@example.com";
-
+   email: string="";
+   private _route=inject(ActivatedRoute)
+   
+   ngOnInit(){
+    // Getting email 
+    this._route.queryParams.subscribe(params=>{ 
+      this.email=params['email']
+    });
+   }
 
 }

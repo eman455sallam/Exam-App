@@ -1,9 +1,9 @@
-import { API_URL } from './../../projects/auth/src/lib/tokens/api.token';
+import { API_URL } from 'auth';
 import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { routes } from './app.routes';
-import { AuthRedirect } from '../../projects/auth/src/lib/components/auth-redirect/auth-redirect';
+import { AUTH_REDIRECT } from 'auth';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
 
@@ -12,8 +12,8 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    { provide: API_URL, useValue:'https://exam-app.elevate-bootcamp.cloud/api/auth'},
-    {provide: AuthRedirect, useValue:'/diplomas'},
+    { provide: API_URL, useValue:'https://exam-app.elevate-bootcamp.cloud/api'},
+    {provide: AUTH_REDIRECT, useValue:'/diplomas'},
     provideAnimationsAsync(),
      providePrimeNG({
             theme: {

@@ -24,7 +24,7 @@
 
       <!-- Input -->
       <input type="text" id="email" name="email" placeholder="user@example.com" formControlName="email" class="w-full h-[46px] px-[10px] border border-[#E5E7EB]
-      placeholder-geist placeholder-normal placeholder-[14px] placeholder-[#9CA3AF] placeholder-align-middle
+      font-mono font-normal text-[14px] text-[#9CA3AF] placeholder-align-middle
                 focus:outline-none focus:ring-2 focus:ring-[#155DFC]"
         [ngClass]="{'border-red-600': registerEmailForm.get('email')?.invalid && (registerEmailForm.get('email')?.touched || registerEmailForm.get('email')?.dirty)}"
         required />
@@ -33,12 +33,33 @@
     <!-- Error message -->
     <div class="w-full max-w-[452px]  text-[#DC2626] font-geist font-normal text-[14px]
             leading-[22px] align-bottom">
-      <lib-input-error [control]="registerEmailForm.get('email')" [backendError]="errorMessage" [fieldName]="'Email'"></lib-input-error>
+      <lib-input-error [control]="registerEmailForm.get('email')"  [fieldName]="'Email'"></lib-input-error>
+    </div>
+     <!-- Server Error Message -->
+    @if(errorMessage){
+    <div class="relative ">
+      <lucide-angular [img]="CircleX"
+        class="absolute left-1/2 -top-1  transform -translate-x-1/2  w-[18px] h-[18px] text-[#DC2626] flex-shrink-0">
+      </lucide-angular>
+      <div class=" w-full max-w-[452px] h-[38px] px-[10px] py-[10px] mt-2
+            border border-[#DC2626] bg-[#FEF2F2]
+            flex items-center justify-center">
+
+        <span class="font-geist font-normal text-[14px] leading-[18px] text-[#DC2626]">
+          {{ errorMessage }}
+        </span>
+      </div>
     </div>
 
+    }
+
     <!-- Next button -->
+     <div class="flex flex-col gap-[36px] pt-6">
     <lib-register-button [disabled]="registerEmailForm.invalid"></lib-register-button>
+    <lib-auth-redirect [label]="'Login'" [link]="'/login'"
+    [redirectLabel]="'Already have an account?'"></lib-auth-redirect>
+
+     </div>
   </form>
-  <app-auth-redirect [label]="'Login'" [link]="'/login'"
-    [redirectLabel]="'Already have an account?'"></app-auth-redirect>
+  
 </section>

@@ -35,14 +35,14 @@
           </label>
 
           <input type="text" placeholder="First name" formControlName="firstName" class="w-full md:w-[221px] h-[46px] border p-[10px] box-border
-             border-[#E5E7EB]
+             border-[#E5E7EB] text-gray-400
              placeholder:text-gray-400 placeholder:font-geist-mono
              placeholder:text-[14px]
              focus:outline-none" />
 
           <!-- Error -->
           <div class="text-sm font-medium text-[#DC2626] ">
-            <lib-input-error [control]="registerForm.get('firstName')" [backendError]="errorMessage"
+            <lib-input-error [control]="registerForm.get('firstName')" 
               [fieldName]="'first name'"></lib-input-error>
           </div>
         </div>
@@ -54,13 +54,13 @@
           </label>
 
           <input type="text" placeholder="Last name" formControlName="lastName" class="w-full md:w-[221px] h-[46px] border p-[10px] box-border
-             border-[#E5E7EB]
+             border-[#E5E7EB] text-gray-400
              placeholder:text-gray-400 placeholder:font-geist-mono
              placeholder:text-[14px]
              focus:outline-none" />
           <!-- Error -->
           <div class="text-sm font-medium text-[#DC2626] ">
-            <lib-input-error [control]="registerForm.get('lastName')" [backendError]="errorMessage"
+            <lib-input-error [control]="registerForm.get('lastName')" 
               [fieldName]="'last name'"></lib-input-error>
           </div>
         </div>
@@ -77,14 +77,14 @@
         <!-- Input -->
         <input type="text" placeholder="Enter username" formControlName="username" class="w-full md:w-[452px] h-[46px] border p-[10px] box-border
            border-[#E5E7EB]
-           text-gray-800
+           text-gray-400
            placeholder:text-gray-400 placeholder:font-geist-mono
            placeholder:text-[14px]
            focus:outline-none" />
 
         <!-- Error -->
         <div class="text-sm font-medium text-[#DC2626] ">
-          <lib-input-error [control]="registerForm.get('username')" [backendError]="errorMessage"
+          <lib-input-error [control]="registerForm.get('username')" 
             [fieldName]="'username'"></lib-input-error>
         </div>
 
@@ -106,10 +106,15 @@
 
         <!-- Input -->
         <div class="flex items-center gap-2">
-          <ngx-intl-tel-input formControlName="phone" [enablePlaceholder]="true" [separateDialCode]="true"
-             class="w-full md:w-[452px] h-[46px] border p-[10px] box-border
+          <ngx-intl-tel-input formControlName="phone" [cssClass]="'custom'" [preferredCountries]="preferredCountries"
+            [selectedCountryISO]="CountryISO.Egypt" [enableAutoCountrySelect]="false" [enablePlaceholder]="false"
+            [searchCountryFlag]="true" [searchCountryField]="[
+    SearchCountryField.Iso2,
+    SearchCountryField.Name
+  ]" [selectFirstCountry]="false" [maxLength]="11" [phoneValidation]="true" [separateDialCode]="true"
+            [numberFormat]="PhoneNumberFormat.National" class="w-full md:w-[452px] h-[46px] border p-[10px] box-border
            border-[#E5E7EB]
-           text-gray-800
+           text-gray-400
            placeholder:text-gray-400 placeholder:font-geist-mono
            placeholder:text-[14px]
            focus:outline-none"></ngx-intl-tel-input>
@@ -121,7 +126,7 @@
 
         <!-- Error -->
         <div class="text-sm font-medium text-[#DC2626] ">
-          <lib-input-error [control]="registerForm.get('phone')" [backendError]="errorMessage"
+          <lib-input-error [control]="registerForm.get('phone')" 
             [fieldName]="'phone'"></lib-input-error>
         </div>
 

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SendEmailVerification } from './send-email-verification';
+import { DiplomasLayout } from './diplomas-layout';
 
-describe('SendEmailVerification', () => {
-  let component: SendEmailVerification;
-  let fixture: ComponentFixture<SendEmailVerification>;
+describe('DiplomasLayout', () => {
+  let component: DiplomasLayout;
+  let fixture: ComponentFixture<DiplomasLayout>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SendEmailVerification]
+      imports: [DiplomasLayout]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SendEmailVerification);
+    fixture = TestBed.createComponent(DiplomasLayout);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

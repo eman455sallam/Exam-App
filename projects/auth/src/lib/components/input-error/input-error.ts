@@ -9,7 +9,6 @@ import { AbstractControl } from '@angular/forms';
 })
 export class InputError {
 @Input() control:AbstractControl | null= null;
-@Input() backendError:string='';
 @Input() fieldName:string='';
 // Error Method
 getError():string{
@@ -30,10 +29,7 @@ getError():string{
       return 'Passwords do not match';
 
     }
-  // Back end errors
-  if(this.backendError)
-    return this.backendError;
-
+ 
 
   return '';
 

@@ -2,8 +2,8 @@ import { catchError } from 'rxjs';
 import { Component, inject } from '@angular/core';
 import { LucideAngularModule, MoveLeft } from 'lucide-angular';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../../../../../../projects/auth/src/lib/services/auth-service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'auth';
+import {  Router } from '@angular/router';
 
 @Component({
   selector: 'app-verify-otp',
@@ -15,11 +15,10 @@ export class VerifyOtp {
 
     readonly MoveLeft=MoveLeft;
     private _authService=inject(AuthService);
-    private _route = inject(ActivatedRoute);
     private _router = inject(Router);
     private _fb=inject(FormBuilder);
 
-    email:string='user@emaple.com'
+    email:string=''
     otpForm!: FormGroup;
     errorMessage:string='';
 
@@ -36,12 +35,12 @@ export class VerifyOtp {
     });
 
     // Getting email
-    this._route.queryParams.subscribe(params=>{
-      this.email=params['email']
-      if(!this.email){
-        this._router.navigate(['send-email-verification'])
-      }
-    });
+   const email=sessionStorage.getItem('auth_email');
+   if(!email){
+    this._router.navigate(['/auth/send-email-verification']);
+    return;
+   }
+   this.email=email
     // Clear backend error message when user starts typing again
     this.otpForm.valueChanges.subscribe(()=>{
       this.errorMessage=''
@@ -62,9 +61,7 @@ export class VerifyOtp {
 
       this._authService.verifyOtp(data).subscribe(({
         next:()=>{
-          this._router.navigate(['/auth/register'],{
-            queryParams:{email:this.email}
-          })
+          this._router.navigate(['/auth/register'])
         },
         error:(err)=>{
           this.errorMessage=err

@@ -2,18 +2,21 @@ import { Component, inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { AuthRedirect } from '../../../../../../projects/auth/src/lib/components/auth-redirect/auth-redirect';
-import { InputError } from '../../../../../../projects/auth/src/lib/components/input-error/input-error';
-import { RegisterButton } from '../../../../../../projects/auth/src/lib/components/register-button/register-button';
-import { AuthService } from '../../../../../../projects/auth/src/lib/services/auth-service';
-import { SendEmailVerificationPayload } from '../../../../../../projects/auth/src/lib/interfaces/send-email-verification-response';
+import { AuthRedirect } from 'auth';
+import { InputError } from 'auth';
+import { RegisterButton } from 'auth';
+import { AuthService } from 'auth';
+import { SendEmailVerificationPayload } from 'auth';
+import { LucideAngularModule, CircleX } from 'lucide-angular';
+
 @Component({
   selector: 'send-email-verification',
-  imports: [ReactiveFormsModule, AuthRedirect, RegisterButton,InputError, CommonModule],
+  imports: [ReactiveFormsModule, AuthRedirect, RegisterButton,InputError, CommonModule,LucideAngularModule],
   templateUrl: './send-email-verification.html',
   styleUrl: './send-email-verification.css',
 })
 export class SendEmailVerification {
+   readonly CircleX=CircleX;
  registerEmailForm!: FormGroup;
      errorMessage:string='';
 
@@ -25,6 +28,14 @@ export class SendEmailVerification {
      this.registerEmailForm = this._fb.group({
       email:['',[Validators.required,Validators.email]],
     });
+    //  Getting saved data from session storage
+    const savedEmail = sessionStorage.getItem('auth_email');
+    if (savedEmail) {
+    this.registerEmailForm.patchValue({
+      email: savedEmail
+    });
+  }
+
 
     this.registerEmailForm.get('email')?.valueChanges.subscribe(()=>{
       this.errorMessage='';
@@ -36,10 +47,12 @@ export class SendEmailVerification {
 
 // Submit Email Form
 onEmailSubmit(){
+
   const data=this.registerEmailForm.value;
   this._authService.SendEmailVerification(data).subscribe({
     next:(res:SendEmailVerificationPayload)=>{
-    this._router.navigate(['/auth/confirm-email-verification'],{queryParams:{email:data.email}}
+          sessionStorage.setItem('auth_email', data.email);
+    this._router.navigate(['/auth/confirm-email-verification']
     );
     },
     error:(err)=>{

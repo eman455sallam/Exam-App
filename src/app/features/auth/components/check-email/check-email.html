@@ -20,7 +20,7 @@
 
     <p class="font-mono font-normal text-[16px] leading-none text-gray-800">
       We have sent a password reset link to: <span class="font-mono font-normal text-[16px] leading-none text-blue-500">
-  user@example.com
+  {{email}}
 </span>
     </p>
 
@@ -36,8 +36,10 @@
   </article>
 
   <footer class="w-full flex pt-6 gap-9 mt-10">
-    <app-auth-redirect text="Don't have an account?" linkText="Create yours" link="/register">
-    </app-auth-redirect>
+    <lib-auth-redirect text="Don't have an account?" linkText="Create yours" link="/auth/send-email-verification">
+    </lib-auth-redirect>
   </footer>
+  
+  
 
 </section>

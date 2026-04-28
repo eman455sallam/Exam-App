@@ -29,13 +29,11 @@
         [ngClass]="{'border-red-600': loginForm.get('username')?.invalid && (loginForm.get('username')?.touched || loginForm.get('username')?.dirty)}"
         required />
       <!-- Username Error Message -->
-      <div class="w-full max-w-[452px]  text-[#DC2626] font-geist font-normal text-[14px]
-            leading-[22px] align-bottom">
-        @if (loginForm.get('username')?.invalid && (loginForm.get('username')?.touched ||
-        loginForm.get('username')?.dirty)) {
-        <p>Your username is required</p>
-        }
-      </div>
+    
+        <div class="text-sm font-medium text-[#DC2626] ">
+          <lib-input-error [control]="loginForm.get('username')"
+            [fieldName]="'username'"></lib-input-error>
+        </div>
     </div>
 
     <!-- Password Field Layout -->
@@ -57,18 +55,16 @@
 
       <div class="flex flex-col w-full max-w-[452px] gap-[4px]">
 
-        <!-- Error Message -->
-        @if(loginForm.get('password')?.invalid && (loginForm.get('password')?.touched ||
-        loginForm.get('password')?.dirty)){
-        <div class="text-[#DC2626] font-geist font-normal text-[14px] leading-[22px] align-bottom">
-          <p>Your password is required</p>
+        <!-- Error -->
+        <div class="text-sm font-medium text-[#DC2626] ">
+          <lib-input-error [control]="loginForm.get('password')"
+            [fieldName]="'Password'"></lib-input-error>
         </div>
-        }
 
 
         <!-- Forgot Password Link -->
         <div class="w-full flex justify-end">
-          <a routerLink="/forget-password"
+          <a routerLink="/auth/forget-password"
             class="font-geist font-medium text-[14px] text-[#155DFC] leading-[18px] hover:underline cursor-pointer">
             Forgot your password?
           </a>
@@ -80,7 +76,7 @@
 
     <!-- Server Error Message -->
     @if(errorMessage){
-    <div class="relative mb-[36px]">
+    <div class="relative ">
       <lucide-angular [img]="CircleX"
         class="absolute left-1/2 -top-1  transform -translate-x-1/2  w-[18px] h-[18px] text-[#DC2626] flex-shrink-0">
       </lucide-angular>
@@ -95,9 +91,11 @@
     </div>
 
     }
-    <!-- Login Button -->
-    <app-auth-button label="Login" [disabled]="!loginForm.valid"></app-auth-button>
+   <div class="flex flex-col gap-[36px] pt-6">
+     <!-- Login Button -->
+    <lib-auth-button label="Login" [disabled]="!loginForm.valid"></lib-auth-button>
 
-    <app-auth-redirect></app-auth-redirect>
+    <lib-auth-redirect ></lib-auth-redirect>
+   </div>
   </form>
 </section>
