@@ -1,20 +1,31 @@
-<!-- Diplomas -->
-<section class="w-full  grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-2.5">
-    <!-- card -->
-     @for (diploma of diplomas; track diploma.id) {
-         <div class="w-full max-w-[336px] aspect-[3/4] gap-2.5 relative overflow-hidden">
-        <img [src]="diploma.image" [alt]="diploma.title" class="w-full h-full object-cover" />
-        <!-- content -->
-        <div class="w-[calc(100%-20px)] h-ful p-4 flex flex-col gap-2.5
+<app-breadcrumbs></app-breadcrumbs>
+
+<section class="p-6 flex flex-col gap-6" >
+    <!-- Heading -->
+    <app-page-title [title]="'Diplomas'"></app-page-title>
+
+    <!-- Diplomas -->
+    <section class="w-full  grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-2.5">
+        <!-- card -->
+        @for (diploma of diplomas; track diploma.id) {
+        <div class="group w-full max-w-[336px] aspect-[3/4] gap-2.5 relative overflow-hidden" routerLink="">
+            <img [src]="diploma.image" [alt]="diploma.title" class="w-full h-full object-cover" />
+            <!-- content -->
+            <div
+                class="w-[calc(100%-20px)]  h-[98px] group-hover:h-[278px] p-4 flex flex-col gap-2.5
                   bg-[#155DFC]/75 backdrop-blur-md
-                  absolute bottom-2.5 left-1/2 -translate-x-1/2">
-            <h4 class="font-mono font-semibold text-[20px] leading-none tracking-normal align-middle text-white ">
-                {{diploma.title}}</h4>
-                <p class="font-mono font-normal text-[14px] leading-none tracking-normal align-middle text-white opacity-80">{{diploma.description}}</p>
-          
+                  absolute bottom-2.5 left-1/2 -translate-x-1/2 transition-all duration-500 ease-in-out overflow-hidden">
+                <h4 class="font-mono font-semibold text-[20px] leading-none tracking-normal align-middle text-white ">
+                    {{diploma.title}}</h4>
+                <p
+                    class="font-mono font-normal text-[14px] leading-none tracking-normal align-middle text-white opacity-80">
+                    {{diploma.description}}</p>
+
+            </div>
         </div>
-    </div>
-     }
-   
+        }
+
+
+    </section>
 
 </section>

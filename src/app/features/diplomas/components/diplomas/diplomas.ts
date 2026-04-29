@@ -2,10 +2,13 @@ import { Component, inject } from '@angular/core';
 import { Diploma } from '../../interfaces/diploma-response';
 import { DiplomasService } from '../../services/diplomas-service';
 import { CommonModule } from '@angular/common';
+import { Breadcrumbs } from "../../../../shared/breadcrumbs/breadcrumbs";
+import { RouterModule } from '@angular/router';
+import { PageTitle } from "../../../../shared/page-title/page-title";
 
 @Component({
   selector: 'app-diplomas',
-  imports: [CommonModule],
+  imports: [CommonModule, Breadcrumbs, RouterModule, PageTitle],
   templateUrl: './diplomas.html',
   styleUrl: './diplomas.css',
 })
