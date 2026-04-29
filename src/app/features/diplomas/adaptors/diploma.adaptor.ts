@@ -7,7 +7,7 @@ import {  DiplomaResponse, DiplomasPayload } from '../interfaces/diploma-respons
 export class DiplomaAdaptor {
   adapt(data:DiplomaResponse):DiplomasPayload{
     return {
-      diplomas:data.payload.diplomas,
+      data:data.payload.data,
       metadata: data.payload.metadata
     }
     

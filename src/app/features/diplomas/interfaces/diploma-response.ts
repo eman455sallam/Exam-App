@@ -5,7 +5,7 @@ status: boolean
 }
 
 export interface DiplomasPayload {
-  diplomas: Diploma[]
+  data: Diploma[]
   metadata: PaginationMetadata
 }
 
