@@ -9,5 +9,6 @@ import {  LucideAngularModule ,GraduationCap } from 'lucide-angular';
 export class PageTitle {
 readonly GraduationCap=GraduationCap;
 @Input()title:string='Diplomas';
+@Input() icon:any='GraduationCap';
 
 }
