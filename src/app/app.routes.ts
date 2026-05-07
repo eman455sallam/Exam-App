@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { ResetPassword } from './features/auth/components/reset-password/reset-password';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
@@ -9,7 +8,7 @@ export const routes: Routes = [
   },
   { path: 'diplomas', 
     loadChildren:() => import('./features/diplomas/diplomas.routes').then(m => m.DIPLOMAS_ROUTES)
-   },
+   }
   
   
 ];

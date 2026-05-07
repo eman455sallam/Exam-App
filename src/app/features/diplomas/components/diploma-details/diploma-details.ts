@@ -28,7 +28,8 @@ export class DiplomaDetails {
 
 
   ngOnInit(){
-    const id=this._activatedRoute.snapshot.paramMap.get('id');
+    const id=this._activatedRoute.snapshot.paramMap.get('diplomaId');
+    console.log(id)
     if(id){
       this.getDiplomaById(id);
     }

@@ -1,0 +1,94 @@
+<nav aria-label="Breadcrumb">
+    <app-breadcrumbs></app-breadcrumbs>
+</nav>
+
+<main class="w-full p-4 md:p-6 flex flex-col gap-6">
+
+    <!-- Header -->
+    <header class="w-full h-19.25 flex items-center gap-2.5 ">
+        <app-back-arrow></app-back-arrow>
+
+        <app-page-title class="flex-1" [title]="'title'" [icon]="CircleQuestionMark ">
+        </app-page-title>
+
+
+
+    </header>
+
+    <!-- Exams Section -->
+    <section aria-label="Exam Questions" class="w-full flex  flex-col gap-4 p-6 bg-white">
+
+        <!-- Header  -->
+        <div class="w-full flex gap-6 items-center">
+
+            <!-- Info -->
+            <div class="flex-1 flex flex-col gap-1.5">
+
+                <!-- Title -->
+                <div class="w-full flex justify-between">
+
+                    <h5 class="font-mono text-[16px] text-gray-500">
+                        Frontend Development - CSS Quiz
+                    </h5>
+
+                    <p class="font-mono text-[14px] text-gray-500">
+                        Question
+                        <span class="font-bold text-blue-600">1</span>
+                        of 25
+                    </p>
+
+                </div>
+
+                <!-- Progress -->
+                <div class="w-full bg-neutral-quaternary rounded-full h-2">
+                    <div class="bg-brand h-2 rounded-full w-[45%]"></div>
+                </div>
+
+            </div>
+
+            <!-- Line -->
+            <div class="w-px h-16 bg-gray-200"></div>
+
+            <!-- Duration -->
+            <div class="w-[65px] h-[65px] flex items-center justify-center ">
+                <div class="w-[65px] h-[65px] rounded-full bg-blue-100"></div>
+
+            </div>
+        </div>
+
+        <!-- Question header -->
+        <div class="w-full pt-6 mb-4 ">
+            <p class="font-mono font-semibold text-[24px] leading-none text-blue-600">What does CSS stand for?</p>
+        </div>
+
+        <!-- Question list -->
+        <div class="w-full max-w-[982px] flex flex-col gap-[10px]">
+            <div class="w-full h-auto flex items-center gap-[10px] p-4 bg-gray-50 cursor-pointer">
+                <!-- Radio -->
+                <div class="w-4 h-4 border border-gray-400 rounded-full  "></div>
+                <!-- Answer  -->
+                <span class="font-mono font-normal text-[14px] leading-none text-gray-800 align-middle">
+                    Text
+                </span>
+            </div>
+
+        </div>
+
+
+
+        <!-- Question footer Next and Previous buttons -->
+        <div class="w-full flex  gap-4 pt-6">
+            <app-exam-navigation-button [variant]="'secondary'" [direction]="'previous'" class="flex-1"></app-exam-navigation-button>
+            <app-exam-navigation-button class="flex-1"></app-exam-navigation-button>
+
+        </div>
+
+
+
+
+
+
+
+    </section>
+
+</main>

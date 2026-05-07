@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { DiplomasLayout } from './layouts/diplomas-layout/diplomas-layout';
+import { DiplomasLayout } from '../../layout/diplomas-layout/diplomas-layout';
 import { Diplomas } from './components/diplomas/diplomas';
 import { DiplomaDetails } from './components/diploma-details/diploma-details';
 
@@ -15,12 +15,13 @@ export const DIPLOMAS_ROUTES: Routes = [
   
       },
         
-      { path: ':id',
-        component: DiplomaDetails ,
-        data: { breadcrumb: 'Details' } 
-        }
+      { 
+        path: ':diplomaId/exams',
+         data: { breadcrumb: 'Exams' },
+        loadChildren: () =>
+          import('../exams/exams.routes').then(m => m.EXAMS_ROUTES),
 
-    
+      }
       
     ]
   }

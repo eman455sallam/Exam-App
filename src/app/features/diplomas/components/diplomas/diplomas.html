@@ -8,7 +8,7 @@
     <section class="w-full  grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-2.5">
         <!-- card -->
         @for (diploma of diplomas; track diploma.id) {
-        <div class="w-full max-w-[336px] aspect-[3/4] gap-2.5 relative overflow-hidden" [routerLink]="['/diplomas',diploma.id]">
+        <div class="w-full max-w-[336px] aspect-[3/4] gap-2.5 relative overflow-hidden"[routerLink]="['/diplomas', diploma.id, 'exams']">
             <img [src]="diploma.image" [alt]="diploma.title" class="w-full h-full object-cover" />
             <!-- content -->
             <div
