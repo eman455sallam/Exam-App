@@ -1,4 +1,4 @@
-export interface ExamsResponse {
+export interface ExamResponse {
   status: boolean;
   code: number;
   payload: ExamsPayload;
