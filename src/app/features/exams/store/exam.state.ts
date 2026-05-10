@@ -4,5 +4,6 @@ export interface ExamState{
     questions:Question[],
     currentIndex:number,
     answers:{[questionId:string]:string},
-    loading:boolean
+    loading:boolean,
+    error:null | string
 }

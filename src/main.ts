@@ -6,6 +6,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { isDevMode } from '@angular/core';
 import { provideStore } from '@ngrx/store';
+import { provideEffects } from '@ngrx/effects';
 
 bootstrapApplication(App, {
   ...appConfig,
@@ -14,7 +15,8 @@ bootstrapApplication(App, {
     provideHttpClient(),
     provideAnimations(),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
-    provideStore()
+    provideStore(),
+    provideEffects()
 ]
 }).catch((err) => console.error(err));
 
