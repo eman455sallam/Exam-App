@@ -7,6 +7,8 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { isDevMode } from '@angular/core';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
+import { ExamEffects } from './app/features/exams/store/exam.effects';
+import { examReducer } from './app/features/exams/store/exam.reducer';
 
 bootstrapApplication(App, {
   ...appConfig,
@@ -15,8 +17,13 @@ bootstrapApplication(App, {
     provideHttpClient(),
     provideAnimations(),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
-    provideStore(),
-    provideEffects()
+    provideStore({
+      exam:examReducer
+
+    }
+
+    ),
+    provideEffects([ExamEffects])
 ]
 }).catch((err) => console.error(err));
 

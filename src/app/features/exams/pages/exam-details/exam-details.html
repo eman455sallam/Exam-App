@@ -40,7 +40,7 @@
                 </div>
 
                 <!-- Progress -->
-                <div class="w-full h-[16px] bg-neutral-quaternary  h-2">
+                <div class="w-full h-[16px] bg-neutral-quaternary  ">
                     <div class="bg-brand h-[16px]  w-[45%]"></div>
                 </div>
 
@@ -58,19 +58,24 @@
 
         <!-- Question header -->
         <div class="w-full pt-6 mb-4 ">
-            <p class="font-mono font-semibold text-[24px] leading-none text-blue-600">What does CSS stand for?</p>
+            <p class="font-mono font-semibold text-[24px] leading-none text-blue-600">{{(currentQuestion$| async )?.text}}</p>
         </div>
 
         <!-- Question list -->
         <div class="w-full max-w-[982px] flex flex-col gap-[10px]">
-            <div class="w-full h-auto flex items-center gap-[10px] p-4 bg-gray-50 cursor-pointer">
+            @for(answer of (currentQuestion$| async )?.answers ; track answer.id){
+                  <div class="w-full h-auto flex items-center gap-[10px] p-4 bg-gray-50 cursor-pointer"
+                  (click)="selectedAnswer(answer.id)">
                 <!-- Radio -->
-                <div class="w-4 h-4 border border-gray-400 rounded-full  "></div>
+                <div class="w-4 h-4 border border-gray-400 rounded-full  " [class.bg-blue-500]="answer.id===selectedAnswerId"></div>
                 <!-- Answer  -->
                 <span class="font-mono font-normal text-[14px] leading-none text-gray-800 align-middle">
-                    Text
+                    {{answer.text}}
                 </span>
             </div>
+
+            }
+          
 
         </div>
 
@@ -78,8 +83,8 @@
 
         <!-- Question footer Next and Previous buttons -->
         <div class="w-full flex  gap-4 pt-6">
-            <app-exam-navigation-button [variant]="'secondary'" [direction]="'previous'" class="flex-1"></app-exam-navigation-button>
-            <app-exam-navigation-button class="flex-1"></app-exam-navigation-button>
+            <app-exam-navigation-button [variant]="'secondary'" [direction]="'previous'" (click)="prevQuestion()" [label]="'Previous'" class="flex-1"></app-exam-navigation-button>
+            <app-exam-navigation-button (click)="nextQuestion()" class="flex-1"></app-exam-navigation-button>
 
         </div>
 

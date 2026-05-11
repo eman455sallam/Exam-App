@@ -33,4 +33,12 @@ export const examReducer=createReducer(initialState,
         error
 
     })),
+    on(examActions.nextQuestion,(state=>({
+        ...state,
+        currentIndex:Math.min(state.currentIndex+1,state.questions.length-1)
+    }))),
+    on(examActions.prevQuestion,(state=>({
+        ...state,
+        currentIndex:Math.max(state.currentIndex-1,0)
+    })))
 )

@@ -10,7 +10,7 @@ import { LucideAngularModule, ChevronLeft, ChevronRight } from 'lucide-angular';
   styleUrl: './exam-navigation-button.css',
 })
 export class ExamNavigationButton {
-@Input() label='eman';
+@Input() label='Next';
 @Input() variant :'primary'| 'secondary'='primary';
 @Input() direction: 'next' | 'previous' = 'next';
 @Input() disabled = false;

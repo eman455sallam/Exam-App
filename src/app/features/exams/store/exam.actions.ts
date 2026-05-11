@@ -2,7 +2,7 @@ import { createAction, props } from "@ngrx/store";
 import { Question } from "../interfaces/question-response";
 
 
-export const loadQuestions=createAction('[Exam Page] Load Questions');
+export const loadQuestions=createAction('[Exam Page] Load Questions',props<{examId:string}>());
 
 export const loadQuestionsSuccess=createAction('[Questions API] Load Questions Success',
     props<{questions:Question[]}>()
