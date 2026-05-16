@@ -1,9 +1,13 @@
+<button [disabled]="disabled"
+  class="w-full max-w-full h-[46px] flex flex-col md:flex-row items-center justify-center gap-[10px] font-mono font-medium text-[14px] leading-none align-middle cursor-pointer"
+  [ngClass]="{ 'bg-blue-600 text-white ' :variant === 'primary', 'bg-gray-200 text-gray-400 ': variant === 'secondary'}">
 @if(icon === 'left'){
-  <lucide-angular [img]="ChevronLeft"></lucide-angular>
+<lucide-angular [img]="ChevronLeft"></lucide-angular>
 }
 
 {{ label }}
 
 @if(icon === 'right'){
-  <lucide-angular [img]="ChevronRight"></lucide-angular>
+<lucide-angular [img]="ChevronRight"></lucide-angular>
 }
+</button>

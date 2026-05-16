@@ -6,6 +6,7 @@ import { ExamsService } from "../services/exams-service";
 import { Store } from "@ngrx/store";
 import * as examSelectors from "../store/exam.selectors";
 import { SubmitExamRequest } from "../interfaces/submit-exam-request";
+import { ActivatedRoute, Router } from "@angular/router";
 
 
 @Injectable()
@@ -15,6 +16,8 @@ export class ExamEffects{
     private _actions$=inject(Actions);
     private _examService=inject(ExamsService);
     private _store = inject(Store);
+    private _router = inject(Router);
+    private _route = inject(ActivatedRoute);
 
 
     loadQuestions$=createEffect(()=>{
@@ -22,7 +25,7 @@ export class ExamEffects{
             ofType(examActions.loadQuestions),
             switchMap(({examId})=>this._examService.getQuestionsByExamId(examId).pipe(
                 map((res)=>{
-
+                    
                     return examActions.loadQuestionsSuccess({
                         questions:res.questions
                     })
@@ -36,6 +39,7 @@ export class ExamEffects{
     });
     submitExam$=createEffect(()=>{
         return this._actions$.pipe(
+            
             ofType(examActions.submitExam),
 
             withLatestFrom(
@@ -46,7 +50,7 @@ export class ExamEffects{
 
             ),
             switchMap(([_,answers,examId,startedAt])=>{
-                  if (!examId || !startedAt) {
+            if (!examId || !startedAt) {
                     return of(examActions.submitExamFailure({
                       error: 'Missing exam data'
                     }));
@@ -59,10 +63,24 @@ export class ExamEffects{
                      answerId
                     }))
                 };
+
                   return this._examService.submitExam(body).pipe(
-                    map(res=>
-                        examActions.submitExamSuccess({result:res})
-                    ),
+                  
+
+               tap(res => {
+
+this._router.navigate([
+        '/diplomas',
+        examId,
+        'exams',
+        'result',
+        res.submission.id
+      ]);
+                 }),
+                    map(res=>{
+                        
+                       return examActions.submitExamSuccess({result:res})
+                    }),
                    catchError(error =>
                    of(examActions.submitExamFailure({ error: error.message }))
                    )

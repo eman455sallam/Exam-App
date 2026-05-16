@@ -25,4 +25,5 @@ export const selectCurrentAnswer=createSelector(
 export const selectStartedAt = createSelector(selectExamState,(state)=>state.startedAt);
 export const isTheLastQuestion=createSelector(selectExamState,
     (state)=>state.currentIndex === state.questions.length-1
-)
+);
+export const submissionResult=createSelector(selectExamState,(state)=>state.submission);

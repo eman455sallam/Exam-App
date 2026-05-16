@@ -94,7 +94,7 @@
 
         <!-- Question footer Next and Previous buttons -->
         <div class="w-full flex  gap-4 pt-6">
-            <app-exam-navigation-button label="Previous" variant="primary" (click)="prevQuestion()"
+            <app-exam-navigation-button label="Previous" icon="left" variant="secondary" (click)="prevQuestion()"
                 class="flex-1"></app-exam-navigation-button>
             @if(!(isLastQuestion$ | async)) {
 
@@ -104,14 +104,14 @@
 
             @if(isLastQuestion$ | async) {
 
-            <app-exam-navigation-button label="Submit" variant="primary" (click)="submitExam()">
+            <app-exam-navigation-button label="Submit" variant="primary" (click)="submitExam()"  class="flex-1">
             </app-exam-navigation-button>
             }
         </div>
 
 
 
-
+<router-outlet></router-outlet>
 
 
 

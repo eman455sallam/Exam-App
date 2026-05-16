@@ -4,7 +4,7 @@ import { API_URL } from 'auth';
 import { HttpClient } from '@angular/common/http';
 import { ExamsListAdaptor } from '../adaptor/exams-list.adaptor';
 import { ErrorHandlerService } from '../../../core/services/error-handler.service';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { QuestionResponse, QuestionsPayload } from '../interfaces/question-response';
 import { ExamsAbstract } from '../abstract/ExamsAbstract';
 import { QuestionsAdaptor} from '../adaptor/questions.adaptor';
@@ -71,6 +71,7 @@ export class ExamsService extends ExamsAbstract{
 
     // submit exam
     submitExam(body:SubmitExamRequest){
+     
         const url=`${this._apiUrl}/submissions`;
       return this._httpclient.post<SubmitExamResponse>(url,body).pipe(
         map(res=>this._submitExamAdaptor.adapt(res)),

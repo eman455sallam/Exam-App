@@ -72,6 +72,15 @@ export const examReducer=createReducer(initialState,
        error
 
     })),
+    on(examActions.setExamId, (state, { examId }) => ({
+        ...state,
+       examId
+    })),
+
+    on(examActions.setStartedAt, (state, { startedAt }) => ({
+       ...state,
+       startedAt
+    })),
 
 
 )

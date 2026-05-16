@@ -29,3 +29,12 @@ export const submitExamSuccess=createAction('[Exam page] Submit Exam Success',
 export const submitExamFailure=createAction('[Exam page] Submit Exam Failure',
     props<{error:string}>()
 );
+export const setExamId = createAction(
+  '[Exam Page] Set Exam Id',
+  props<{ examId: string }>()
+);
+
+export const setStartedAt = createAction(
+  '[Exam Page] Set Started At',
+  props<{ startedAt: string }>()
+);
