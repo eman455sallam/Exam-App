@@ -10,9 +10,11 @@ import { ExamsAbstract } from '../abstract/ExamsAbstract';
 import { QuestionsAdaptor} from '../adaptor/questions.adaptor';
 import { Exam, ExamResponse} from '../interfaces/exam-response';
 import { ExamAdaptor } from '../adaptor/exam-adaptor';
-import { SubmitExamResponse } from '../interfaces/submit-exam-response';
+import { SubmitExamPayload, SubmitExamResponse } from '../interfaces/submit-exam-response';
 import { SubmitExamRequest } from '../interfaces/submit-exam-request';
 import { SubmitExamAdaptor } from '../adaptor/submit-exam-adaptor';
+import { SubmissionByIdPayload, SubmissionResponseById } from '../interfaces/submission-response-by-id';
+import { SubmissionByIdAdaptor } from '../adaptor/submission-by-id.adaptor';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +26,7 @@ export class ExamsService extends ExamsAbstract{
     private readonly _examAdaptor=inject(ExamAdaptor);
     private readonly _submitExamAdaptor=inject(SubmitExamAdaptor);
     private readonly _questionsAdaptor=inject(QuestionsAdaptor);
+    private readonly _submissionByIdAdaptor=inject(SubmissionByIdAdaptor);
     private readonly _errorHanderService=inject(ErrorHandlerService);
 
     getAllExams(diplomaId:string): Observable<ExamsPayload> {
@@ -70,7 +73,7 @@ export class ExamsService extends ExamsAbstract{
 
 
     // submit exam
-    submitExam(body:SubmitExamRequest){
+    submitExam(body:SubmitExamRequest):Observable<SubmitExamPayload>{
      
         const url=`${this._apiUrl}/submissions`;
       return this._httpclient.post<SubmitExamResponse>(url,body).pipe(
@@ -80,5 +83,18 @@ export class ExamsService extends ExamsAbstract{
           return throwError(()=>new Error(errorMessage));
         })
       );
+    }
+
+
+    getSubmissionResponseById(id:string):Observable<SubmissionByIdPayload>{
+          const url=`${this._apiUrl}/submissions/${id}`;
+        return this._httpclient.get<SubmissionResponseById>(url).pipe(
+        map(res=>this._submissionByIdAdaptor.adapt(res)),
+        catchError((err)=>{
+          const errorMessage=this._errorHanderService.handleError(err);
+          return throwError(()=>new Error(errorMessage));
+        })
+      );
+
     }
   }
