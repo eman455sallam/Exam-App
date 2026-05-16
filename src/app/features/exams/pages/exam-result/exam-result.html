@@ -35,7 +35,7 @@
 
                     <p class="font-mono text-[14px] text-gray-500">
                         Question
-                        <span class="font-bold text-blue-600">{{((currentIndex$|async )?? 0 )+ 1}}</span>
+                        <span class="font-bold text-blue-600">{{examDetails.questionsCount}}</span>
                         @if(examDetails){
                         of {{examDetails.questionsCount}}
 
@@ -62,59 +62,15 @@
             </div>
         </div>
 
-        <!-- Question header -->
-        <div class="w-full pt-6 mb-4 ">
-            <p class="font-mono font-semibold text-[24px] leading-none text-blue-600">{{(currentQuestion$| async
-                )?.text}}</p>
-        </div>
 
-        <!-- Question list -->
-        <div class="w-full max-w-[982px] flex flex-col gap-[10px]">
-            @if(currentQuestion$ |async ; as question){
-            @for(answer of (currentQuestion$| async )?.answers ; track answer.id){
-            <div class="w-full h-auto flex items-center gap-[10px] p-4 bg-gray-50 cursor-pointer"
-                (click)="addingAnswer(question.id,answer.id)">
-                <!-- Radio -->
-                <div class="w-4 h-4 border border-gray-400 rounded-full  "
-                    [class.bg-blue-500]="(currentAnswer$ | async) === answer.id"></div>
-                <!-- Answer  -->
-                <span class="font-mono font-normal text-[14px] leading-none text-gray-800 align-middle">
-                    {{answer.text}}
-                </span>
-            </div>
-
-            }
-            }
-
-
-
-        </div>
-
-
-
-        <!-- Question footer Next and Previous buttons -->
+        <!-- footer restart and explore buttons -->
         <div class="w-full flex  gap-4 pt-6">
-            <app-exam-navigation-button label="Previous" variant="primary" (click)="prevQuestion()"
-                class="flex-1"></app-exam-navigation-button>
-            @if(!(isLastQuestion$ | async)) {
-
-            <app-exam-navigation-button label="Next" icon="right" (click)="nextQuestion()"
-                class="flex-1"></app-exam-navigation-button>
-            }
-
-            @if(isLastQuestion$ | async) {
-
-            <app-exam-navigation-button label="Submit" variant="primary" (click)="submitExam()">
+            <app-exam-navigation-button label="Restart" variant="secondary" (click)="restart()" class="flex-1">
             </app-exam-navigation-button>
-            }
+
+            <app-exam-navigation-button label="Explore" (click)="explore()" class="flex-1">
+            </app-exam-navigation-button>
         </div>
-
-
-
-
-
 
 
     </section>
-
-</main>

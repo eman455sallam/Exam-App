@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { ExamsPayload, ExamResponse } from '../interfaces/exams-response';
+import { ExamsPayload,AllExamsResponse} from '../interfaces/all-exams-response';
 import { API_URL } from 'auth';
 import { HttpClient } from '@angular/common/http';
 import { ExamsListAdaptor } from '../adaptor/exams-list.adaptor';
@@ -8,7 +8,11 @@ import { catchError, map, Observable, throwError } from 'rxjs';
 import { QuestionResponse, QuestionsPayload } from '../interfaces/question-response';
 import { ExamsAbstract } from '../abstract/ExamsAbstract';
 import { QuestionsAdaptor} from '../adaptor/questions.adaptor';
-import { ExamPayload } from '../interfaces/exam-response';
+import { Exam, ExamResponse} from '../interfaces/exam-response';
+import { ExamAdaptor } from '../adaptor/exam-adaptor';
+import { SubmitExamResponse } from '../interfaces/submit-exam-response';
+import { SubmitExamRequest } from '../interfaces/submit-exam-request';
+import { SubmitExamAdaptor } from '../adaptor/submit-exam-adaptor';
 
 @Injectable({
   providedIn: 'root',
@@ -16,18 +20,20 @@ import { ExamPayload } from '../interfaces/exam-response';
 export class ExamsService extends ExamsAbstract{
   private readonly _apiUrl=inject(API_URL);
     private readonly _httpclient=inject(HttpClient);
-    private readonly _examsAdaptor=inject(ExamsListAdaptor);
+    private readonly _allExamsAdaptor=inject(ExamsListAdaptor);
+    private readonly _examAdaptor=inject(ExamAdaptor);
+    private readonly _submitExamAdaptor=inject(SubmitExamAdaptor);
     private readonly _questionsAdaptor=inject(QuestionsAdaptor);
     private readonly _errorHanderService=inject(ErrorHandlerService);
 
     getAllExams(diplomaId:string): Observable<ExamsPayload> {
           const url=`${this._apiUrl}/exams`;
-         return this._httpclient.get<ExamResponse>(url,{
+         return this._httpclient.get<AllExamsResponse>(url,{
           params:{
             diplomaId:diplomaId
           }
          }).pipe(
-            map(res=>this._examsAdaptor.adapt(res)),
+            map(res=>this._allExamsAdaptor.adapt(res)),
             catchError((err)=>{
               const errorMessage=this._errorHanderService.handleError(err);
               return throwError(()=> new Error(errorMessage))
@@ -37,8 +43,15 @@ export class ExamsService extends ExamsAbstract{
       
     }
 
-    getExamById(examId:string):Observable<ExamPayload>{
-      return 
+    getExamById(examId:string):Observable<Exam>{
+        const url=`${this._apiUrl}/exams/${examId}`;
+      return this._httpclient.get<ExamResponse>(url).pipe(
+        map(res=>this._examAdaptor.adapt(res)),
+        catchError((err)=>{
+              const errorMessage=this._errorHanderService.handleError(err);
+              return throwError(()=> new Error(errorMessage))
+            })
+      )
       
 
     }
@@ -53,5 +66,18 @@ export class ExamsService extends ExamsAbstract{
         })
       )
 
+    }
+
+
+    // submit exam
+    submitExam(body:SubmitExamRequest){
+        const url=`${this._apiUrl}/submissions`;
+      return this._httpclient.post<SubmitExamResponse>(url,body).pipe(
+        map(res=>this._submitExamAdaptor.adapt(res)),
+        catchError((err)=>{
+          const errorMessage=this._errorHanderService.handleError(err);
+          return throwError(()=>new Error(errorMessage));
+        })
+      );
     }
   }

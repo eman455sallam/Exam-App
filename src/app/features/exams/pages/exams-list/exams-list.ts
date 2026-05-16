@@ -8,7 +8,7 @@ import { BreadcrumbService } from '../../../../shared/services/breadcrumb.servic
 import { Exam, DiplomaDetailsModel } from '../../../diplomas/interfaces/diploma-details-response';
 import { DiplomasService } from '../../../diplomas/services/diplomas-service';
 import { ExamsService } from '../../services/exams-service';
-import { ExamDiploma } from '../../interfaces/exams-response';
+import { ExamDiploma } from '../../interfaces/all-exams-response';
 
 @Component({
   selector: 'app-exams-list',

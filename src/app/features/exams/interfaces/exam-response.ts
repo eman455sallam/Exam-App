@@ -1,10 +1,10 @@
 export interface ExamResponse {
   status: boolean;
   code: number;
-  payload: ExamPayload;
+  payload: payload;
 
 }
-export interface ExamPayload {
+export interface payload {
   exam: Exam;
 }
 export interface Exam {

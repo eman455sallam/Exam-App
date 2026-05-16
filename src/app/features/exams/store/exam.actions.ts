@@ -1,5 +1,6 @@
 import { createAction, props } from "@ngrx/store";
 import { Question } from "../interfaces/question-response";
+import { SubmitExamPayload, SubmitExamResponse } from "../interfaces/submit-exam-response";
 
 
 export const loadQuestions=createAction('[Exam Page] Load Questions',props<{examId:string}>());
@@ -20,4 +21,11 @@ export const answerQuestion=createAction('[Exam Page] Answer Question',
     props<{
         questionId:string;
         answer:string}>()
+);
+export const submitExam=createAction('[Exam page] Submit Exam');
+export const submitExamSuccess=createAction('[Exam page] Submit Exam Success',
+    props<{result:SubmitExamPayload}>()
+);
+export const submitExamFailure=createAction('[Exam page] Submit Exam Failure',
+    props<{error:string}>()
 );

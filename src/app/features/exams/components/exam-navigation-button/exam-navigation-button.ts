@@ -10,9 +10,9 @@ import { LucideAngularModule, ChevronLeft, ChevronRight } from 'lucide-angular';
   styleUrl: './exam-navigation-button.css',
 })
 export class ExamNavigationButton {
-@Input() label='Next';
-@Input() variant :'primary'| 'secondary'='primary';
-@Input() direction: 'next' | 'previous' = 'next';
+@Input() label!: string;
+@Input() variant: 'primary' | 'secondary' = 'primary';
+@Input() icon: 'left' | 'right' | null = null;
 @Input() disabled = false;
 
 

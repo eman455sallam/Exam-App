@@ -8,7 +8,12 @@ export const  initialState:ExamState={
     currentIndex:0,
     answers:{},
     loading:false,
-    error:null
+    error:null,
+    submission:null,
+    analytics: null,
+    examId: null,
+   startedAt: null,
+    
 
 }
 
@@ -40,5 +45,33 @@ export const examReducer=createReducer(initialState,
     on(examActions.prevQuestion,(state=>({
         ...state,
         currentIndex:Math.max(state.currentIndex-1,0)
-    })))
+    }))),
+       on(examActions.answerQuestion,(state,{questionId,answer})=>({
+        ...state,
+        answers:{
+            ...state.answers,
+            [questionId]:answer
+        }
+    })),
+    on(examActions.submitExam,(state)=>({
+        ...state,
+        loading:true,
+        error:null
+
+    })),
+     on(examActions.submitExamSuccess,(state,{result})=>({
+        ...state,
+        loading:false,
+       submission:result.submission,
+       analytics:result.analytics,
+
+    })),
+    on(examActions.submitExamFailure,(state,{error})=>({
+        ...state,
+        loading:false,
+       error
+
+    })),
+
+
 )

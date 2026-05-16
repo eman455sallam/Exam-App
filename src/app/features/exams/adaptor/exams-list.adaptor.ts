@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { ExamsPayload, ExamResponse } from '../interfaces/exams-response';
+import { ExamsPayload, AllExamsResponse } from '../interfaces/all-exams-response';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ExamsListAdaptor {
-  adapt(data:ExamResponse):ExamsPayload{
+  adapt(data:AllExamsResponse):ExamsPayload{
     return{
       data:data.payload.data,
       metadata:data.payload.metadata
